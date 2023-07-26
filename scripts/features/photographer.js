@@ -1,29 +1,52 @@
-async function getPhotographers() {
-  const response = await fetch("data/photographers.json");
-  if (response.ok === true) {
-    const data = await response.json();
-    const photographers = data.photographers;
-    return photographers;
-  } else {
-    throw new Error("Impossible de contacter le serveur");
-  }
-}
-
 const createHomePhotographerCard = (photographerData) => {
-  const card = document.createElement("article");
-  const photographeCard = `
-  <a href="http://127.0.0.1:5501/photographer.html?id=${photographerData.id}">
-  <img alt="Portrait de ${photographerData.name}" src="assets/photographers/${photographerData.portrait}">
-  <h2>${photographerData.name}</h2>
-  <span class="photographer_section_location">${photographerData.country}, ${photographerData.city}</span>
-  <span class="photographer_section_tag">${photographerData.tagline}</span>
-  <span class="photographer_section_tarification">${photographerData.price}/jour</span>
-  </a>
-  
-  `;
-
-  card.innerHTML = photographeCard;
+  const card = createDomElement("article", { class: "main-article" });
+  // Création de la balise <a> avec le lien de redirection vers la page photographe
+  const linkToPersonalPage = createDomElement("a", {
+    href: `../../photographer.html?id=${photographerData.id}`,
+    class: "main-link",
+  });
+  // Ici on va créer les deux balises permettant d'afficher la photo et le nom du phtographe
+  const profilPicture = createDomElement("img", {
+    alt: `Portrait de ${photographerData.name}`,
+    src: `assets/photographers/${photographerData.portrait}`,
+    class: "profil-picture",
+  });
+  const profilName = createDomElement("h2", {
+    class: "profil-name",
+  });
+  profilName.textContent = photographerData.name;
+  // Ici on ajoute les balises Name et Picture à la balise du lien
+  linkToPersonalPage.append(profilPicture, profilName);
+  // Création de la div qui va wrapper la description du photographe
+  const descriptionDiv = createDomElement("div", {
+    class: "description-profil",
+  });
+  // Création des balises permettant d'afficher la localisation, la phrase d'accroche et le prix du photographe
+  const profilLocation = createDomElement("p", {
+    class: "profil-location",
+  });
+  profilLocation.innerText =
+    photographerData.city + ", " + photographerData.country;
+  const profilTagline = createDomElement("p", {
+    class: "profil-tagline",
+  });
+  profilTagline.innerText = photographerData.tagline;
+  const profilPrice = createDomElement("p", {
+    class: "profil-price",
+  });
+  profilPrice.innerText = photographerData.price + "€/jour";
+  // Ajout des balises précédente dans la div de description
+  descriptionDiv.append(profilLocation, profilTagline, profilPrice);
+  // Enfin, ajout du lien et de la description dans la balise article de départ
+  card.append(linkToPersonalPage, descriptionDiv);
   return card;
 };
 
-// créer une fonction pour la page perso des photographes via un modèle similaire
+function displayPhotographerCards(photographers) {
+  const photographerMain = document.querySelector(".main-wrapper");
+  // console.log("displayData1 ", photographers);
+  photographers.forEach((photographer) => {
+    const card = createHomePhotographerCard(photographer);
+    photographerMain.append(card);
+  });
+}

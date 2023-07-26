@@ -2,6 +2,7 @@
 <html lang="fr">
   <head>
     <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/global.css" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -12,15 +13,14 @@
     <title>Fisheye</title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
+    <header class="header">
+      <img src="assets/images/logo.png" alt="fisheye logo" />
       <h1>Nos photographes</h1>
     </header>
-    <main id="main">
-      <div class="photographer_section"></div>
-    </main>
+    <main id="main" class="main-wrapper"></main>
+    <script src="scripts/functions/getPhotographers.js"></script>
     <script src="scripts/features/photographer.js"></script>
-    <script src="scripts/features/photographer.js"></script>
+    <script src="scripts/utils/createElement.js"></script>
     <script src="scripts/pages/index.js"></script>
   </body>
 </html>

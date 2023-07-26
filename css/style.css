@@ -1,68 +1,62 @@
-@import url("photographer.css");
-
-body {
-  font-family: "DM Sans", sans-serif;
-  margin: 0;
-}
-
-header {
+.main-wrapper {
+  text-decoration: none;
+  padding: 0 50px;
+  margin: 0 auto;
+  max-width: 1340px;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  height: 90px;
-}
-
-h1 {
-  color: #901c1c;
-  margin-right: 100px;
-  font-size: 2.125rem;
-}
-
-.logo {
-  height: 50px;
-  margin-left: 100px;
-}
-
-.photographer_section {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
+  gap: 90px;
   margin-top: 75px;
 }
 
-.photographer_section article {
-  justify-self: center;
+.main-article {
+  width: 25%;
+  max-width: 330px;
+}
+
+.main-link {
+  gap: 15px;
+  width: 100%;
+  text-decoration: none;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  cursor: pointer;
+  text-align: center;
 }
 
-.photographer_section article h2 {
-  color: #d3573c;
-  font-size: 2rem;
-}
-
-.photographer_section article img {
-  height: 220px;
-  width: 220px;
+.profil-picture {
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.photographer_section_location {
-  font-size: 1.125rem;
-  color: red;
+.profil-name {
+  color: #d3573c;
+  font-size: 2.25rem;
 }
 
-.photographer_section_tag {
-  font-size: 1rem;
-  color: red;
+.description-profil {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 7px;
 }
 
-.photographer_section_tarification {
-  font-size: 1rem;
-  color: lightgray;
+.profil-location {
+  font-size: 0.8125rem;
+  color: #901c1c;
+}
+
+.profil-tagline {
+  font-size: 0.625rem;
+}
+
+.profil-price {
+  font-size: 0.5625rem;
+  color: #525252;
 }

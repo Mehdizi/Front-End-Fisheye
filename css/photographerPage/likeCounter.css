@@ -1,0 +1,27 @@
+/* likes counter */
+
+.like-counter {
+  z-index: 1;
+  height: 3rem;
+  background-color: #db8876;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  left: 70%;
+  bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  margin-left: 10%;
+  gap: 10px;
+}
+
+.daily-price {
+  margin-right: 10%;
+}

@@ -1,0 +1,30 @@
+/* CSS of the filter */
+.filterMedias {
+  gap: 15px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1240px;
+  width: 95%;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.filterMedias p {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.filterMedias select {
+  border: 0;
+}
+
+.filterMedias select,
+option {
+  border-radius: 5px;
+  height: 2.5rem;
+  width: 7rem;
+  background-color: #901c1c;
+  font-size: 1.125rem;
+  color: white;
+}

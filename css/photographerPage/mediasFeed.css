@@ -1,0 +1,45 @@
+.medias-feed {
+  width: 95%;
+  max-width: 1240px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.photographer-media-card {
+  width: 350px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.photographer-content {
+  cursor: pointer;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.media-description-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+}
+.media-title,
+.media-like {
+  font-size: 1.5rem;
+  color: #901c1c;
+}
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.media-like-icone {
+}

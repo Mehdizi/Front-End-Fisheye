@@ -124,7 +124,7 @@ sendBtn.addEventListener("click", (e) => {
     resetData(firstName, lastName, email, message);
     formular.reset();
     modal.style.display = "none";
-    successPage.style.display = "block";
+    successPage.style.display = "flex";
   }
   if (firstNameValidation === false) {
     errorData(firstName, firstNameError);

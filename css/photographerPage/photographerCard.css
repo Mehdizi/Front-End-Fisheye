@@ -1,0 +1,60 @@
+/* CSS of the photographer personal card */
+
+.main {
+  height: 315px;
+  max-width: 1240px;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  background-color: #fafafa;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+.photograph-header {
+  max-width: 1440px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.photographer-personal-description {
+  margin-left: 50px;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.photographer-name {
+  font-size: 4rem;
+  color: #d3573c;
+}
+.photographer-location {
+  font-size: 1.5rem;
+  color: #901c1c;
+}
+.photographer-tagline {
+  font-size: 1.125rem;
+  color: #525252;
+}
+
+.photographer-header {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photographer-div-portrait {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.photographer-portrait {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}

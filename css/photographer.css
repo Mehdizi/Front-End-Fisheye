@@ -152,15 +152,16 @@
 }
 
 .success-page {
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 35px;
-  margin: auto;
   width: 50%;
   height: 25%;
   right: 23%;
-  display: none;
-  position: absolute;
+  top: 25%;
+
+  position: fixed;
   background-color: #db8876;
 }
 .success-page h2 {

@@ -21,9 +21,11 @@ const createPhotographerPersonalCard = (photographerInfos) => {
   });
   photographerTagline.innerText = photographerInfos.tagline;
   // On ajoute les balises à l'intérieur de la div de description
-  personalCardDescription.appendChild(photographerName);
-  personalCardDescription.appendChild(photographerLocation);
-  personalCardDescription.appendChild(photographerTagline);
+  personalCardDescription.append(
+    photographerName,
+    photographerLocation,
+    photographerTagline
+  );
 
   // On crée la balise img pour afficher le portrait
   const photographerPicture = createDomElement("img", {
@@ -32,7 +34,7 @@ const createPhotographerPersonalCard = (photographerInfos) => {
     src: `assets/photographers/${photographerInfos.portrait}`,
   });
   // On ajoute la balise img dans la div dédié au portrait
-  personalCardPortrait.appendChild(photographerPicture);
+  personalCardPortrait.append(photographerPicture);
 
   // On récupère l'élément du DOM où on va ajouter les informations du photographe
   const mainDiv = document.querySelector(".photographer-header");
@@ -49,11 +51,10 @@ const displayPhotographerPersonalCard = async () => {
 const createMediasFeed = (media) => {
   // Recuperation of DOM element to insert the created HTML
   const feed = document.querySelector(".medias-feed");
-
   const mediaCard = createDomElement("div", {
     class: "photographer-media-card",
+    onclick: "displayModalMedia()",
   });
-
   const mediaContent = () => {
     if (media.image) {
       return createDomElement("img", {
@@ -75,51 +76,25 @@ const createMediasFeed = (media) => {
 
   const mediaTitle = createDomElement("h2", { class: "media-title" });
   mediaTitle.innerText = media.title;
-
   const likeWrapper = createDomElement("div", { class: "like-wrapper" });
   const mediaLike = createDomElement("p", { class: "media-like" });
   mediaLike.innerText = media.likes;
-  const mediaLikeIcone = createDomElement("i", { class: "media-like-icone" });
-  likeWrapper.appendChild(mediaLike);
-  likeWrapper.appendChild(mediaLikeIcone);
-
+  const mediaLikeIcone = createDomElement("i", {
+    class: "fa-solid fa-heart heart",
+  });
+  likeWrapper.append(mediaLike, mediaLikeIcone);
   const mediaDescriptionWrapper = createDomElement("div", {
     class: "media-description-wrapper",
   });
-  mediaDescriptionWrapper.appendChild(mediaTitle);
-  mediaDescriptionWrapper.appendChild(likeWrapper);
+  mediaDescriptionWrapper.append(mediaTitle, likeWrapper);
 
-  mediaCard.appendChild(mediaContent());
-  mediaCard.appendChild(mediaDescriptionWrapper);
-  feed.appendChild(mediaCard);
+  mediaCard.append(mediaContent(), mediaDescriptionWrapper);
+  feed.append(mediaCard);
 };
 
 const displayPhotographerMediasFeed = async () => {
   const mediasFiltred = await getPhotographerMedias();
-  // const filter = document.querySelector("#filter");
-  // filter.addEventListener("change", (e) => {
-  //   console.log("change", e.currentTarget.value);
-  //   if (e.currentTarget.value === "popularity") {
-  //     mediasFiltred.sort((a, b) => a.likes - b.likes);
-  //     console.log("ordre des likes", mediasFiltred);
-  //     return mediasFiltred;
-  //   } else if (e.currentTarget.value === "date") {
-  //     mediasFiltred.sort((a, b) => {
-  //       const formattedDateA = new Date(a.date);
-  //       const formattedDateB = new Date(b.date);
-  //       return formattedDateB - formattedDateA;
-  //     });
-  //     console.log("ordre des date", mediasFiltred);
-  //     return mediasFiltred;
-  //   } else {
-  //     mediasFiltred.sort((a, b) => a.title.localeCompare(b.title));
-  //     console.log("ordre des noms", mediasFiltred);
-  //     return mediasFiltred;
-  //   }
-  // });
-  // Recuperation of the photographer's medias
-  // const photographerMedias = await getPhotographerMedias();
-  // filteredMedias(photographerMedias);
+  addFilter(mediasFiltred);
   // For each object of the photographerMedias array create a card
   mediasFiltred.forEach((media) => {
     createMediasFeed(media);
@@ -131,18 +106,52 @@ const createLikesCounter = (photographerInfos, photographerLikes) => {
   const likesDiv = createDomElement("div", { class: "likes" });
   const likesNumber = createDomElement("p");
   likesNumber.innerText = `${photographerLikes}`;
-  const likeIcone = createDomElement("i");
-  likesDiv.appendChild(likesNumber);
-  likesDiv.appendChild(likeIcone);
+  const likeIcone = createDomElement("i", { class: "fa-solid fa-heart heart" });
+  likesDiv.append(likesNumber, likeIcone);
   const dailyPrice = createDomElement("p", { class: "daily-price" });
   dailyPrice.innerText = `${photographerInfos.price}€/jour`;
 
-  mainDiv.appendChild(likesDiv);
-  mainDiv.appendChild(dailyPrice);
+  mainDiv.append(likesDiv, dailyPrice);
 };
 
 const displayLikesCounter = async () => {
   const photographerInfos = await getPhotographerPersonalInformations();
   const totalLikes = await getTotalLikes();
   createLikesCounter(photographerInfos, totalLikes);
+};
+
+const createCarousel = (media) => {
+  const modal = document.querySelector("#full-screen-media");
+  const mediaWrapper = createDomElement("div", {
+    class: "modal-media-wrapper",
+  });
+  const mediaContent = () => {
+    if (media.image) {
+      return createDomElement("img", {
+        class: "modal-media-content",
+        alt: `${media.title}`,
+        src: `assets/medias/highQuality/${media.image}`,
+      });
+    } else {
+      return createDomElement("video", {
+        class: "modal-media-content",
+        alt: `${media.title}`,
+        controls: "true",
+        width: "400",
+        src: `assets/medias/highQuality/${media.video}`,
+        type: "video/mp4",
+      });
+    }
+  };
+  const mediaTitle = createDomElement("h2", { class: "modal-media-title" });
+  mediaWrapper.append(mediaContent(), mediaTitle);
+  modal.append(mediaWrapper);
+};
+
+const displayCarousel = async () => {
+  const mediasFiltred = await getPhotographerMedias();
+  addFilter(mediasFiltred);
+  console.log(mediasFiltred);
+  createCarousel(mediasFiltred[0]);
+  // essayer de faire un addEventListener sur les flèches pour bouger en fonction de l'index des obj dans le tableau mediasFiltred
 };

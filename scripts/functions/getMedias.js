@@ -3,7 +3,6 @@ async function getMedias() {
   if (response.ok === true) {
     const data = await response.json();
     const medias = data.media;
-    console.log("getMedias", medias);
     return medias;
   } else {
     throw new Error(

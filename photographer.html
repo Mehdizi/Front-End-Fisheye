@@ -10,6 +10,12 @@
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -19,52 +25,75 @@
 
     <main id="main" class="main">
       <div class="photographer-header">
-        <button type="button" class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
+        <button type="button" class="contact_button">Contactez-moi</button>
       </div>
+
       <div id="contact_modal" class=".contact_modal">
         <div class="modal">
           <div class="header-contact-modal">
             <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" onclick="closeModal()" />
+            <img src="assets/icons/close.svg" class="close-modal-message" />
           </div>
           <form id="contactForm" method="get">
             <div class="formData">
               <label for="firstName">Prénom</label>
               <input
-                class=""
+                class="formData_input"
                 type="text"
                 id="firstName"
                 name="firstName"
                 minlength="2"
                 maxlength="25" />
+              <span class="error-message firstName-error"
+                >Veuillez choisir un prénom valide.</span
+              >
             </div>
             <div class="formData">
               <label for="lastName">Nom</label>
               <input
-                class=""
+                class="formData_input"
                 type="text"
                 id="lastName"
                 name="lastName"
                 minlength="2"
                 maxlength="25" />
+              <span class="error-message lastName-error"
+                >Veuillez saisir un nom valide.</span
+              >
             </div>
             <div class="formData">
               <label for="email">Email</label>
-              <input class="" type="email" id="email" name="email" />
+              <input
+                class="formData_input"
+                type="email"
+                id="email"
+                name="email" />
+              <span class="error-message email-error"
+                >Veuillez saisir un email valide.</span
+              >
             </div>
             <div class="formData">
-              <label for="message">Votre message</label>
+              <label for="message">Message</label>
               <textarea
+                class="formData_input"
                 type="text"
                 class=""
                 id="message"
                 name="message"></textarea>
+              <span class="error-message message-error"
+                >Veuillez saisir un message entre 10 et 250 caractères.</span
+              >
             </div>
-            <button class="contact_button" type="submit">Envoyer</button>
+            <button id="send-btn" class="contact_button" type="submit">
+              Envoyer
+            </button>
           </form>
         </div>
+      </div>
+
+      <div class="success-page">
+        <img class="close-success-page" src="assets/icons/close.svg" />
+        <h2>Message envoyé !</h2>
       </div>
 
       <div class="like-counter"></div>
@@ -82,6 +111,23 @@
     </div>
 
     <div class="medias-feed"></div>
+    <div id="full-screen-media" class="full-screen-media">
+      <!-- <div class="modal-media-wrapper">
+      <img
+        src="assets/medias/highQuality/Architecture_On_a_hill.jpg"
+        alt=""
+        class="modal-media" />
+      <h2>Titre en gros en dessous</h2>
+      </div> -->
+
+      <img
+        class="close-media"
+        src="assets/icons/close.svg"
+        alt="bouton de fermeture du media"
+        onclick="closeModalMedia()" />
+      <div class="arrow-right" onclick="goToNextMedia()"></div>
+      <div class="arrow-left" onclick="goToPreviousMedia()"></div>
+    </div>
 
     <script src="scripts/utils/createElement.js"></script>
     <script src="scripts/functions/getMedias.js"></script>
@@ -92,7 +138,8 @@
     <script src="scripts/functions/getTotalLikes.js"></script>
     <script src="/scripts/features/medias.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/filterMedias.js"></script>
+    <script src="/scripts/utils/FullScreenMedia.js"></script>
+    <script src="/scripts/utils/filteredMedias.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
   </body>
 </html>

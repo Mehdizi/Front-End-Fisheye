@@ -3,7 +3,6 @@ async function getPhotographers() {
   if (response.ok === true) {
     const data = await response.json();
     const photographers = data.photographers;
-    console.log("getPhotographers", photographers);
     return photographers;
   } else {
     throw new Error(

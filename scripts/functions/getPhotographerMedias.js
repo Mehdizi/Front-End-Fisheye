@@ -4,6 +4,5 @@ const getPhotographerMedias = async () => {
   const photographerPersonalMedias = allMedias.filter(
     (media) => media.photographerId === +photographerId
   );
-  console.log("getphotographerMedias", photographerPersonalMedias);
   return photographerPersonalMedias;
 };

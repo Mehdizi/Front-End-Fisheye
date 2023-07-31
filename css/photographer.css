@@ -110,6 +110,7 @@
   font-size: 3.5rem;
   font-weight: normal;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 #contactForm {
@@ -124,7 +125,7 @@
   flex-direction: column;
   width: 100%;
   align-items: self-start;
-  margin-bottom: 26px;
+  margin-bottom: 15px;
 }
 
 .formData label {
@@ -132,16 +133,44 @@
   font-size: 36px;
 }
 
-.formData input,
-textarea {
+.formData_input {
+  outline: none;
+  font-size: 1.5rem;
   width: 100%;
   height: 3rem;
-  border: none;
+  border: 2px solid #db8876;
   border-radius: 5px;
 }
 
 .formData textarea {
   height: 8rem;
+}
+
+.error-message {
+  margin-top: 7px;
+  opacity: 0;
+}
+
+.success-page {
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  margin: auto;
+  width: 50%;
+  height: 25%;
+  right: 23%;
+  display: none;
+  position: absolute;
+  background-color: #db8876;
+}
+.success-page h2 {
+  font-size: 3rem;
+}
+
+.close-success-page {
+  position: absolute;
+  right: 2%;
+  top: 5%;
 }
 
 /* CSS of the filter */
@@ -196,6 +225,7 @@ option {
 }
 
 .photographer-content {
+  cursor: pointer;
   width: 100%;
   height: 300px;
   object-fit: cover;
@@ -214,6 +244,9 @@ option {
   color: #901c1c;
 }
 .like-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .media-like-icone {
@@ -238,10 +271,107 @@ option {
 
 .likes {
   display: flex;
+  align-items: center;
   margin-left: 10%;
-  gap: 2px;
+  gap: 10px;
 }
 
 .daily-price {
   margin-right: 10%;
+}
+
+/* Carousel Medias */
+
+.full-screen-media {
+  position: fixed;
+  top: 10%;
+  right: 10%;
+  z-index: 2;
+  width: 80vw;
+  height: 80vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #fafafa;
+  border-radius: 5px;
+}
+
+.modal-media-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-media-wrapper h2 {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.modal-media-content {
+  width: 95%;
+  height: 95%;
+  object-fit: contain;
+}
+
+.close-media {
+  background-color: #901c1c;
+  opacity: 0.5;
+  border-radius: 50%;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.close-media:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  transition: 0.3s ease;
+}
+
+.arrow-left,
+.arrow-right {
+  z-index: 3;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border: 10px solid #901c1c;
+  border-bottom: none;
+  border-right: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  opacity: 0.5;
+  top: 50%;
+}
+
+.arrow-left {
+  left: 2%;
+  transform: rotate(315deg);
+}
+
+.arrow-right {
+  transform: rotate(135deg);
+  right: 2%;
+}
+
+.arrow-left:hover {
+  transform: scale(1.1) rotate(315deg);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.arrow-right:hover {
+  transform: scale(1.1) rotate(135deg);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+/* heart */
+
+.heart {
+  color: #901c1c;
+  font-size: 1.25rem;
 }

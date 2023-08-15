@@ -48,7 +48,7 @@ const displayPhotographerPersonalCard = async () => {
   createPhotographerPersonalCard(photographerInfos);
 };
 
-const createMediasFeed = (media) => {
+const createMediasFeed = (media, index) => {
   // Recuperation of DOM element to insert the created HTML
   const feed = document.querySelector(".medias-feed");
   const mediaCard = createDomElement("div", {
@@ -75,7 +75,7 @@ const createMediasFeed = (media) => {
   };
 
   const mediaTitle = createDomElement("h2", { class: "media-title" });
-  mediaTitle.innerText = media.title;
+  mediaTitle.innerText = media.title + "   " + index;
   const likeWrapper = createDomElement("div", { class: "like-wrapper" });
   const mediaLike = createDomElement("p", { class: "media-like" });
   mediaLike.innerText = media.likes;
@@ -95,9 +95,8 @@ const createMediasFeed = (media) => {
 const displayPhotographerMediasFeed = async () => {
   const mediasFiltred = await getPhotographerMedias();
   addFilter(mediasFiltred);
-  // For each object of the photographerMedias array create a card
-  mediasFiltred.forEach((media) => {
-    createMediasFeed(media);
+  mediasFiltred.forEach((media, index) => {
+    createMediasFeed(media, index);
   });
 };
 
@@ -122,6 +121,20 @@ const displayLikesCounter = async () => {
 
 const createCarousel = (media) => {
   const modal = document.querySelector("#full-screen-media");
+  const cross = createDomElement("img", {
+    class: "close-media",
+    src: "assets/icons/close.svg",
+    alt: "bouton de fermeture du media",
+  });
+  const rightArrow = createDomElement("div", {
+    class: "arrow-right",
+    onclick: "goToNextMedia()",
+  });
+  const leftArrow = createDomElement("div", {
+    class: "arrow-left",
+    onclick: "goToPreviousMedia()",
+  });
+  modal.append(cross, rightArrow, leftArrow);
   const mediaWrapper = createDomElement("div", {
     class: "modal-media-wrapper",
   });
@@ -150,8 +163,16 @@ const createCarousel = (media) => {
 
 const displayCarousel = async () => {
   const mediasFiltred = await getPhotographerMedias();
-  addFilter(mediasFiltred);
+  addFilter(mediasFiltred, index);
   console.log(mediasFiltred);
-  createCarousel(mediasFiltred[0]);
+  createCarousel(mediasFiltred[index]);
   // essayer de faire un addEventListener sur les flèches pour bouger en fonction de l'index des obj dans le tableau mediasFiltred
+};
+
+const refreshCarousel = () => {
+  const loadCarousel = document.querySelector(".photographer-media-card");
+  loadCarousel.addEventListener("click", openMedia());
+  function openMedia() {
+    displayCarousel();
+  }
 };

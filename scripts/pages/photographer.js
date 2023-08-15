@@ -2,7 +2,6 @@
 const init = async () => {
   displayPhotographerPersonalCard();
   displayPhotographerMediasFeed();
-  displayCarousel();
   displayLikesCounter();
 };
 

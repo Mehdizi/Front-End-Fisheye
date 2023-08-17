@@ -54,7 +54,7 @@ const createMediasFeed = (media, index) => {
   const mediaCard = createDomElement("div", {
     class: "photographer-media-card",
     id: "photographer-media-card",
-    onclick: "displayModalMedia()",
+    onclick: `displayModalMedia(${index})`,
   });
   const mediaContent = () => {
     if (media.image) {
@@ -122,7 +122,44 @@ const displayLikesCounter = async () => {
   createLikesCounter(photographerInfos, totalLikes);
 };
 
-const createCarousel = (media) => {
+const changeMedia = (medias, index) => {
+  closeModalMedia();
+
+  // If click previous and we are in the first media then take last index
+  if (index === -1) {
+    index = medias.length - 1;
+    // If click next and we are in the last media then take first index
+  } else if (index === medias.length) {
+    index = 0;
+  }
+
+  return index;
+
+  createCarousel(medias, index);
+};
+
+const mediaContent = (media) => {
+  if (media.image) {
+    return createDomElement("img", {
+      class: "modal-media-content",
+      alt: `${media.title}`,
+      src: `assets/medias/highQuality/${media.image}`,
+    });
+  } else {
+    return createDomElement("video", {
+      class: "modal-media-content",
+      alt: `${media.title}`,
+      controls: "true",
+      width: "400",
+      src: `assets/medias/highQuality/${media.video}`,
+      type: "video/mp4",
+    });
+  }
+};
+
+const createCarousel = (medias, index) => {
+  let media = medias[index];
+  let copyIndex = index;
   const main = document.querySelector("main");
   const modal = createDomElement("div", {
     id: "full-screen-media",
@@ -134,48 +171,57 @@ const createCarousel = (media) => {
     alt: "bouton de fermeture du media",
     onclick: "closeModalMedia()",
   });
-  const rightArrow = createDomElement("div", {
-    class: "arrow-right",
-    onclick: "goToNextMedia()",
-  });
-  const leftArrow = createDomElement("div", {
-    class: "arrow-left",
-    onclick: "goToPreviousMedia()",
-  });
-  const indexNum = createDomElement("span", { class: "indexNum" });
-  indexNum.innerText = "index de la photo : " + media;
-  modal.append(cross, rightArrow, leftArrow, indexNum);
-  main.append(modal);
+
   const mediaWrapper = createDomElement("div", {
     class: "modal-media-wrapper",
   });
-  const mediaContent = () => {
-    if (media.image) {
-      return createDomElement("img", {
-        class: "modal-media-content",
-        alt: `${media.title}`,
-        src: `assets/medias/highQuality/${media.image}`,
-      });
-    } else {
-      return createDomElement("video", {
-        class: "modal-media-content",
-        alt: `${media.title}`,
-        controls: "true",
-        width: "400",
-        src: `assets/medias/highQuality/${media.video}`,
-        type: "video/mp4",
-      });
-    }
-  };
-  const mediaTitle = createDomElement("h2", { class: "modal-media-title" });
-  mediaWrapper.append(mediaContent(), mediaTitle);
+
+  const indexNum = createDomElement("span", {
+    class: "indexNum",
+    innerText: `${copyIndex + 1}/${medias.length}`,
+  });
+
+  const rightArrow = createDomElement("div", {
+    class: "arrow-right",
+    events: {
+      click: () => {
+        copyIndex += 1;
+        media = medias[copyIndex];
+        mediaWrapper.innerHTML = "";
+        mediaWrapper.append(mediaContent(media));
+        indexNum.innerText = `${copyIndex + 1}/${medias.length}`;
+        // changeMedia(medias, index + 1)
+      },
+    },
+  });
+  const leftArrow = createDomElement("div", {
+    class: "arrow-left",
+    events: {
+      click: () => {
+        copyIndex -= 1;
+        media = medias[copyIndex];
+        mediaWrapper.innerHTML = "";
+        mediaWrapper.append(mediaContent(media));
+        indexNum.innerText = `${copyIndex + 1}/${medias.length}`;
+        // changeMedia(medias, index - 1)
+      },
+    },
+  });
+  modal.append(cross, rightArrow, leftArrow, indexNum);
+  main.append(modal);
+
+  mediaWrapper.append(mediaContent(media));
+
   modal.append(mediaWrapper);
+
+  // const mediaTitle = createDomElement("h2", { class: "modal-media-title" });
+  // mediaWrapper.append(mediaContent(), mediaTitle);
 };
 
-const displayCarousel = async () => {
+const displayCarousel = async (index) => {
   const mediasFiltred = await getPhotographerMedias();
   addFilter(mediasFiltred);
-  createCarousel(mediasFiltred[1]);
+  createCarousel(mediasFiltred, index);
   // mediasFiltred.forEach((media, index) => createCarousel(media[index]));
 
   // mediasFiltred.forEach((media, index) => {

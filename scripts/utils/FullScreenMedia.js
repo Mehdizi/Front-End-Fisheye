@@ -1,7 +1,5 @@
-function displayModalMedia() {
-  const media = document.querySelector("#photographer-media-card");
-  // console.log(media);
-  displayCarousel();
+function displayModalMedia(index) {
+  displayCarousel(index);
 }
 
 function closeModalMedia() {

@@ -53,6 +53,7 @@ const createMediasFeed = (media, index) => {
   const feed = document.querySelector(".medias-feed");
   const mediaCard = createDomElement("div", {
     class: "photographer-media-card",
+    id: "photographer-media-card",
     onclick: "displayModalMedia()",
   });
   const mediaContent = () => {
@@ -96,8 +97,10 @@ const displayPhotographerMediasFeed = async () => {
   const mediasFiltred = await getPhotographerMedias();
   addFilter(mediasFiltred);
   mediasFiltred.forEach((media, index) => {
+    // console.log("media :", media, "index :", index);
     createMediasFeed(media, index);
   });
+  // console.log("------------------");
 };
 
 const createLikesCounter = (photographerInfos, photographerLikes) => {
@@ -120,11 +123,16 @@ const displayLikesCounter = async () => {
 };
 
 const createCarousel = (media) => {
-  const modal = document.querySelector("#full-screen-media");
+  const main = document.querySelector("main");
+  const modal = createDomElement("div", {
+    id: "full-screen-media",
+    class: "full-screen-media",
+  });
   const cross = createDomElement("img", {
     class: "close-media",
     src: "assets/icons/close.svg",
     alt: "bouton de fermeture du media",
+    onclick: "closeModalMedia()",
   });
   const rightArrow = createDomElement("div", {
     class: "arrow-right",
@@ -134,7 +142,10 @@ const createCarousel = (media) => {
     class: "arrow-left",
     onclick: "goToPreviousMedia()",
   });
-  modal.append(cross, rightArrow, leftArrow);
+  const indexNum = createDomElement("span", { class: "indexNum" });
+  indexNum.innerText = "index de la photo : " + media;
+  modal.append(cross, rightArrow, leftArrow, indexNum);
+  main.append(modal);
   const mediaWrapper = createDomElement("div", {
     class: "modal-media-wrapper",
   });
@@ -163,16 +174,21 @@ const createCarousel = (media) => {
 
 const displayCarousel = async () => {
   const mediasFiltred = await getPhotographerMedias();
-  addFilter(mediasFiltred, index);
-  console.log(mediasFiltred);
-  createCarousel(mediasFiltred[index]);
-  // essayer de faire un addEventListener sur les flèches pour bouger en fonction de l'index des obj dans le tableau mediasFiltred
+  addFilter(mediasFiltred);
+  createCarousel(mediasFiltred[1]);
+  // mediasFiltred.forEach((media, index) => createCarousel(media[index]));
+
+  // mediasFiltred.forEach((media, index) => {
+  //   const card = document.querySelector(".photographer-media-card");
+  //   // card.addEventListener("click", console.log(index, media));
+  // });
 };
 
-const refreshCarousel = () => {
-  const loadCarousel = document.querySelector(".photographer-media-card");
-  loadCarousel.addEventListener("click", openMedia());
-  function openMedia() {
-    displayCarousel();
-  }
-};
+// const refreshCarousel = () => {
+//   const loadCarousel = document.querySelector(".photographer-media-card");
+//   loadCarousel.addEventListener("click", openMedia);
+//   console.log("loadCarousel");
+//   function openMedia() {
+//     displayCarousel();
+//   }
+// };

@@ -1,9 +1,10 @@
 function displayModalMedia() {
-  const modal = document.getElementById("full-screen-media");
-  modal.style.display = "block";
+  const media = document.querySelector("#photographer-media-card");
+  // console.log(media);
+  displayCarousel();
 }
 
 function closeModalMedia() {
-  const modal = document.getElementById("full-screen-media");
-  modal.style.display = "none";
+  const modalMedia = document.querySelector("#full-screen-media");
+  modalMedia.remove();
 }

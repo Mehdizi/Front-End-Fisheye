@@ -56,59 +56,86 @@
         <div class="modal">
           <div class="header-contact-modal">
             <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" class="close-modal-message" />
+            <img
+              src="assets/icons/close.svg"
+              class="close-modal-message"
+              role="close button" />
           </div>
           <form id="contactForm" method="get">
             <div class="formData">
               <label for="firstName">Prénom</label>
               <input
+                aria-describedby="fistname-error"
+                aria-required="true"
                 class="formData_input"
                 type="text"
                 id="firstName"
                 name="firstName"
                 minlength="2"
-                maxlength="25" />
-              <span class="error-message firstName-error"
+                maxlength="25"
+                role="text" />
+              <span
+                class="error-message firstName-error"
+                role="alert"
+                id="firstname-error"
                 >Veuillez choisir un prénom valide.</span
               >
             </div>
             <div class="formData">
               <label for="lastName">Nom</label>
               <input
+                aria-describedby="lastname-error"
+                aria-required="true"
                 class="formData_input"
                 type="text"
                 id="lastName"
                 name="lastName"
                 minlength="2"
                 maxlength="25" />
-              <span class="error-message lastName-error"
+              <span
+                class="error-message lastName-error"
+                role="alert"
+                id="lastname-error"
                 >Veuillez saisir un nom valide.</span
               >
             </div>
             <div class="formData">
               <label for="email">Email</label>
               <input
+                aria-describedby="email-error"
+                aria-required="true"
                 class="formData_input"
                 type="email"
                 id="email"
                 name="email" />
-              <span class="error-message email-error"
+              <span
+                class="error-message email-error"
+                role="alert"
+                id="email-error"
                 >Veuillez saisir un email valide.</span
               >
             </div>
             <div class="formData">
               <label for="message">Message</label>
               <textarea
+                aria-describedby="message-error"
+                aria-required="true"
                 class="formData_input"
                 type="text"
-                class=""
                 id="message"
                 name="message"></textarea>
-              <span class="error-message message-error"
+              <span
+                class="error-message message-error"
+                role="alert"
+                id="message-error"
                 >Veuillez saisir un message entre 10 et 250 caractères.</span
               >
             </div>
-            <button id="send-btn" class="contact_button" type="submit">
+            <button
+              id="send-btn"
+              class="contact_button"
+              type="submit"
+              role="submit formular">
               Envoyer
             </button>
           </form>
@@ -136,8 +163,7 @@
 
     <div class="medias-feed"></div>
 
-    <div id="full-screen-media" class="full-screen-media">
-    </div>
+    <!-- <div id="full-screen-media" class="full-screen-media"></div> -->
 
     <script src="scripts/utils/createElement.js"></script>
     <script src="scripts/functions/getMedias.js"></script>
@@ -148,8 +174,8 @@
     <script src="scripts/functions/getTotalLikes.js"></script>
     <script src="/scripts/features/medias.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/FullScreenMedia.js"></script>
     <script src="/scripts/utils/filteredMedias.js"></script>
+    <script src="/scripts/utils/FullScreenMedia.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
   </body>
 </html>

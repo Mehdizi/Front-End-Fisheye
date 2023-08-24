@@ -42,5 +42,16 @@
   gap: 10px;
 }
 
-.media-like-icone {
+@media screen and (max-width: 1200px) {
+  .medias-feed {
+    justify-content: center;
+    gap: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .media-title,
+  .media-like {
+    font-size: 1.125rem;
+  }
 }

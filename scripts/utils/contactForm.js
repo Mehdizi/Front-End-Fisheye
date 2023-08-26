@@ -19,7 +19,7 @@ const closeModalSuccessBtn = document.querySelector(".close-success-page");
 
 modalMessageBtn.addEventListener("click", openModalMessage);
 function openModalMessage() {
-  modal.style.display = "block";
+  modal.style.display = "flex";
 }
 
 closeModalMessageBtn.addEventListener("click", closeModalMessage);

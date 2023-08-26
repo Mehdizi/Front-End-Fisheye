@@ -97,9 +97,10 @@ const createMediasFeed = (media, index) => {
 };
 
 const displayPhotographerMediasFeed = async () => {
-  const mediasFiltred = await getPhotographerMedias();
-  addFilter(mediasFiltred);
-  mediasFiltred.forEach((media, index) => {
+  const medias = await getPhotographerMedias();
+  applyFilter(medias);
+  addFilter(medias);
+  medias.forEach((media, index) => {
     createMediasFeed(media, index);
   });
 };
@@ -133,11 +134,11 @@ const modalMediaTitle = (media) => {
 
 const displayCarousel = async (index) => {
   // recuperation of the photographer's medias
-  const mediasFiltred = await getPhotographerMedias();
+  const medias = await getPhotographerMedias();
   // add of the filter on the photographer's medias
-  addFilter(mediasFiltred);
+  applyFilter(medias);
   // creation of the carousel with the filtred medias
-  createCarousel(mediasFiltred, index);
+  createCarousel(medias, index);
 };
 
 const createCarousel = (medias, index) => {

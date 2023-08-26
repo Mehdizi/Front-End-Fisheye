@@ -1,5 +1,6 @@
-.contact_modal {
+#contact_modal {
   position: relative;
+  display: none;
 }
 
 .contact_button {

@@ -31,6 +31,13 @@
   height: 50px;
   align-items: center;
 }
+
+.media-like-button {
+  border: 0px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .media-title,
 .media-like {
   font-size: 1.5rem;

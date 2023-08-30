@@ -45,93 +45,108 @@
   </head>
   <body>
     <header class="header">
-      <a href="index.html"><img src="assets/images/logo.png" /></a>
+      <a href="index.html"
+        ><img alt="Fisheye Home page" src="assets/images/logo.png"
+      /></a>
     </header>
 
     <main id="main" class="main">
-      <div class="photographer-header">
-        <button type="button" class="contact_button">Contactez-moi</button>
+      <div class="photographer-personal-card">
+        <div class="photographer-button">
+          <button type="button" class="contact_button" aria-label="Contact Me">
+            Contactez-moi
+          </button>
+        </div>
       </div>
 
-      <div id="contact_modal" class=".contact_modal">
+      <div id="contact_modal" class=".contact_modal" role="dialog">
         <div class="modal">
           <div class="header-contact-modal">
-            <h2>Contactez-moi</h2>
-            <img
-              src="assets/icons/close.svg"
-              class="close-modal-message"
-              role="close button" />
+            <button
+              type="button"
+              name="close contact form"
+              role="close button"
+              class="close-modal-button">
+              <img src="assets/icons/close.svg" />
+            </button>
           </div>
           <form id="contactForm" method="get">
-            <div class="formData">
-              <label for="firstName">Prénom</label>
-              <input
-                aria-describedby="fistname-error"
-                aria-required="true"
-                class="formData_input"
-                type="text"
-                id="firstName"
-                name="firstName"
-                minlength="2"
-                maxlength="25"
-                role="text" />
-              <span
-                class="error-message firstName-error"
-                role="alert"
-                id="firstname-error"
-                >Veuillez choisir un prénom valide.</span
-              >
+            <div
+              class="personal-info"
+              role="group"
+              aria-labelledby="Personal informations">
+              <div class="formData">
+                <label for="firstName">Prénom</label>
+                <input
+                  aria-required="true"
+                  class="formData_input"
+                  type="text"
+                  id="firstName"
+                  name="first name"
+                  minlength="2"
+                  maxlength="25"
+                  role="text" />
+                <span
+                  class="error-message firstName-error"
+                  role="alert"
+                  id="firstname-error"
+                  >Veuillez choisir un prénom valide.</span
+                >
+              </div>
+              <div class="formData">
+                <label for="lastName">Nom</label>
+                <input
+                  aria-required="true"
+                  class="formData_input"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  minlength="2"
+                  maxlength="25" />
+                <span
+                  class="error-message lastName-error"
+                  role="alert"
+                  id="lastname-error"
+                  >Veuillez saisir un nom valide.</span
+                >
+              </div>
+              <div class="formData">
+                <label for="email">Email</label>
+                <input
+                  aria-required="true"
+                  class="formData_input"
+                  type="email"
+                  id="email"
+                  name="email" />
+                <span
+                  class="error-message email-error"
+                  role="alert"
+                  id="email-error"
+                  >Veuillez saisir un email valide.</span
+                >
+              </div>
             </div>
-            <div class="formData">
-              <label for="lastName">Nom</label>
-              <input
-                aria-describedby="lastname-error"
-                aria-required="true"
-                class="formData_input"
-                type="text"
-                id="lastName"
-                name="lastName"
-                minlength="2"
-                maxlength="25" />
-              <span
-                class="error-message lastName-error"
-                role="alert"
-                id="lastname-error"
-                >Veuillez saisir un nom valide.</span
-              >
+            <div
+              class="personal-message"
+              role="group"
+              aria-labelledby="Your message">
+              <div class="formData">
+                <label for="message">Message</label>
+                <textarea
+                  aria-required="true"
+                  class="formData_input"
+                  type="text"
+                  id="message"
+                  name="message"></textarea>
+                <span
+                  class="error-message message-error"
+                  role="alert"
+                  id="message-error"
+                  >Veuillez saisir un message entre 10 et 250 caractères.</span
+                >
+              </div>
             </div>
-            <div class="formData">
-              <label for="email">Email</label>
-              <input
-                aria-describedby="email-error"
-                aria-required="true"
-                class="formData_input"
-                type="email"
-                id="email"
-                name="email" />
-              <span
-                class="error-message email-error"
-                role="alert"
-                id="email-error"
-                >Veuillez saisir un email valide.</span
-              >
-            </div>
-            <div class="formData">
-              <label for="message">Message</label>
-              <textarea
-                aria-describedby="message-error"
-                aria-required="true"
-                class="formData_input"
-                type="text"
-                id="message"
-                name="message"></textarea>
-              <span
-                class="error-message message-error"
-                role="alert"
-                id="message-error"
-                >Veuillez saisir un message entre 10 et 250 caractères.</span
-              >
-            </div>
+
             <button
               id="send-btn"
               class="contact_button"

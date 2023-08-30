@@ -10,10 +10,13 @@ const message = document.querySelector("#message");
 const sendBtn = document.querySelector("#send-btn");
 const modal = document.querySelector("#contact_modal");
 const modalMessageBtn = document.querySelector(".contact_button");
-const closeModalMessageBtn = document.querySelector(".close-modal-message");
+const closeModalMessageBtn = document.querySelector(".close-modal-button");
 const formular = document.querySelector("#contactForm");
 const successPage = document.querySelector(".success-page");
 const closeModalSuccessBtn = document.querySelector(".close-success-page");
+// DOM element to hidden for accessibility
+header = document.querySelector(".header");
+likeCounter = document.querySelector(".like-counter");
 
 // Function to open and close the modal
 
@@ -56,6 +59,7 @@ const appear = "1";
 
 function successData(elem, errorElem) {
   elem.style.borderColor = green;
+  elem.setAttribute("aria-invalid", "false");
   errorElem.style.opacity = transparent;
 }
 
@@ -67,6 +71,7 @@ function errorData(elem, errorElem) {
 function resetData(...elems) {
   elems.forEach((elem) => {
     elem.style.borderColor = neutral;
+    elem.setAttribute("aria-invalid", "");
   });
 }
 
@@ -128,14 +133,18 @@ sendBtn.addEventListener("click", (e) => {
   }
   if (firstNameValidation === false) {
     errorData(firstName, firstNameError);
+    firstName.setAttribute("aria-invalid", "true");
   }
   if (lastNameValidation === false) {
     errorData(lastName, lastNameError);
+    lastName.setAttribute("aria-invalid", "true");
   }
   if (emailValidation === false) {
     errorData(email, emailError);
+    email.setAttribute("aria-invalid", "true");
   }
   if (messageValidation === false) {
     errorData(message, messageError);
+    message.setAttribute("aria-invalid", "true");
   }
 });

@@ -30,5 +30,27 @@
 @media screen and (max-width: 1048px) {
   .like-counter {
     width: 50%;
+    left: 55%;
+    right: 25%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .like-counter {
+    left: 50%;
+    width: 200px;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1rem;
+    height: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .like-counter {
+    left: 35%;
+  }
+  .likes {
+    gap: 3px;
   }
 }

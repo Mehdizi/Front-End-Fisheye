@@ -1,14 +1,14 @@
 // Part of the photographer's card (create and display)
 
 const createPhotographerPersonalCard = (photographerInfos) => {
-  // On crée les deux div qui vont acceuillir la description et le portrait du photographe
+  // Recuperation of the DOM element to introduce the data
+  const photographerPersonalCard = document.querySelector(
+    ".photographer-personal-card"
+  );
+  // creation of the balise for the description part
   const personalCardDescription = createDomElement("div", {
     class: "photographer-personal-description",
   });
-  const personalCardPortrait = createDomElement("div", {
-    class: "photographer-div-portrait",
-  });
-  // On crée les balises de la description du photographe
   const photographerName = createDomElement("h1", {
     class: "photographer-name",
   });
@@ -22,32 +22,52 @@ const createPhotographerPersonalCard = (photographerInfos) => {
     class: "photographer-tagline",
   });
   photographerTagline.innerText = photographerInfos.tagline;
-  // On ajoute les balises à l'intérieur de la div de description
   personalCardDescription.append(
     photographerName,
     photographerLocation,
     photographerTagline
   );
 
-  // On crée la balise img pour afficher le portrait
+  // creation of the balise for the portrait part
+  const personalCardPortrait = createDomElement("div", {
+    class: "photographer-div-portrait",
+  });
   const photographerPicture = createDomElement("img", {
     class: "photographer-portrait",
-    alt: `Portrait de ${photographerInfos.name}`,
+    alt: ``,
     src: `assets/photographers/${photographerInfos.portrait}`,
   });
-  // On ajoute la balise img dans la div dédié au portrait
+  photographerPicture.setAttribute(
+    "aria-label",
+    `${photographerInfos.portrait}`
+  );
   personalCardPortrait.append(photographerPicture);
 
-  // On récupère l'élément du DOM où on va ajouter les informations du photographe
-  const mainDiv = document.querySelector(".photographer-header");
-  // On ajoute la balise contenant la description et le portrait respectivement avant et après l'élément du DOM récupéré
-  mainDiv.insertAdjacentElement("beforebegin", personalCardDescription);
-  mainDiv.insertAdjacentElement("afterend", personalCardPortrait);
+  // Introduction of the previus part in the DOM element photographer-personal-card
+  photographerPersonalCard.prepend(personalCardDescription);
+  photographerPersonalCard.insertAdjacentElement(
+    "beforeend",
+    personalCardPortrait
+  );
 };
 
 const displayPhotographerPersonalCard = async () => {
   const photographerInfos = await getPhotographerPersonalInformations();
   createPhotographerPersonalCard(photographerInfos);
+  createTitleModalMessage(photographerInfos);
+};
+
+// Part for the creation of the personal name on the modal message
+
+const createTitleModalMessage = (photographerInfos) => {
+  const title = createDomElement("h2");
+  title.innerHTML = `Contactez moi <br> ${photographerInfos.name}`;
+  const headerContactModal = document.querySelector(".header-contact-modal");
+  headerContactModal.prepend(title);
+  // const modalMessage = document.querySelector("#contact_modal");
+  // if (modalMessage.style.display === "flex") {
+
+  // }
 };
 
 // Part of the medias feed (create and display)
@@ -58,7 +78,6 @@ const createMediasFeed = (media, index) => {
   const mediaCard = createDomElement("div", {
     class: "photographer-media-card",
     id: "photographer-media-card",
-    onclick: `displayModalMedia(${index})`,
   });
   const mediaContent = () => {
     if (media.image) {
@@ -66,6 +85,7 @@ const createMediasFeed = (media, index) => {
         class: "photographer-content",
         alt: `${media.title}`,
         src: `assets/medias/lowQuality/${media.image}`,
+        onclick: `displayModalMedia(${index})`,
       });
     } else {
       return createDomElement("video", {
@@ -74,19 +94,40 @@ const createMediasFeed = (media, index) => {
         controls: "true",
         width: "400",
         src: `assets/medias/highQuality/${media.video}`,
+        onclick: `displayModalMedia(${index})`,
         type: "video/mp4",
       });
     }
   };
   const mediaTitle = createDomElement("h2", { class: "media-title" });
   mediaTitle.innerText = media.title;
+
+  // Part for the like button and counter
+
   const likeWrapper = createDomElement("div", { class: "like-wrapper" });
-  const mediaLike = createDomElement("p", { class: "media-like" });
-  mediaLike.innerText = media.likes;
-  const mediaLikeIcone = createDomElement("i", {
-    class: "fa-solid fa-heart heart",
+  let counter = media.likes;
+  const mediaLikeButton = createDomElement("button", {
+    class: "media-like-button",
+    events: {
+      click: () => {
+        if (counter === media.likes) {
+          counter = counter + 1;
+          mediaLike.innerText = counter;
+        } else if (counter > media.likes) {
+          counter = counter - 1;
+          mediaLike.innerText = counter;
+        }
+      },
+    },
   });
-  likeWrapper.append(mediaLike, mediaLikeIcone);
+  const mediaLike = createDomElement("p", { class: "media-like" });
+  mediaLike.innerText = counter;
+  const mediaLikeIcone = createDomElement("i", {
+    class: "heart fa-solid fa-heart",
+  });
+  mediaLikeIcone.setAttribute("aria-hidden", "true");
+  mediaLikeButton.append(mediaLikeIcone);
+  likeWrapper.append(mediaLike, mediaLikeButton);
   const mediaDescriptionWrapper = createDomElement("div", {
     class: "media-description-wrapper",
   });
@@ -104,6 +145,15 @@ const displayPhotographerMediasFeed = async () => {
     createMediasFeed(media, index);
   });
 };
+
+// const IncrementLike = (media) => {
+//   const likeButton = document.querySelector(".media-like-button");
+//   let counter = media.likes;
+//   likeButton.addEventListener("click", () => {
+//     counter = +counter;
+//     counter.innerHTML = counter;
+//   });
+// };
 
 // Part of the modal media (create, display)
 
@@ -148,6 +198,7 @@ const createCarousel = (medias, index) => {
   const modal = createDomElement("div", {
     id: "full-screen-media",
     class: "full-screen-media",
+    role: "dialog",
   });
   const cross = createDomElement("img", {
     class: "close-media",
@@ -200,7 +251,7 @@ const createCarousel = (medias, index) => {
   modal.append(mediaWrapper);
 };
 
-// Part for the like counter
+// Part for the like counter (display, create and increment)
 
 const displayLikesCounter = async () => {
   const photographerInfos = await getPhotographerPersonalInformations();
@@ -213,7 +264,10 @@ const createLikesCounter = (photographerInfos, photographerLikes) => {
   const likesDiv = createDomElement("div", { class: "likes" });
   const likesNumber = createDomElement("p");
   likesNumber.innerText = `${photographerLikes}`;
-  const likeIcone = createDomElement("i", { class: "fa-solid fa-heart heart" });
+  const likeIcone = createDomElement("i", {
+    class: "heart fa-solid fa-heart ",
+  });
+  likeIcone.setAttribute("aria-hidden", "true");
   likesDiv.append(likesNumber, likeIcone);
   const dailyPrice = createDomElement("p", { class: "daily-price" });
   dailyPrice.innerText = `${photographerInfos.price}€/jour`;

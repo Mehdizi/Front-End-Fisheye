@@ -11,6 +11,34 @@
   justify-content: space-around;
 }
 
+.contact_button {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact_button:hover {
+  background-color: #d3573c;
+}
+.contact_button:focus {
+  background-color: #d3573c;
+}
+
+.photographer-personal-card {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .photographer-personal-description {
   margin-left: 50px;
   width: 25%;
@@ -51,6 +79,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .photographer-portrait {
   width: 200px;
   height: 200px;
@@ -61,10 +90,16 @@
 @media screen and (max-width: 1048px) {
   .main {
     height: auto;
-    flex-direction: column-reverse;
     gap: 50px;
     max-width: 768px;
     padding: 20px 0;
+  }
+  .photographer-personal-card {
+    flex-direction: column-reverse;
+    gap: 50px;
+  }
+  .photographer-name {
+    text-align: center;
   }
   .photographer-personal-description {
     align-items: center;

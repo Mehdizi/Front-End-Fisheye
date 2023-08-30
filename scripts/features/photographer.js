@@ -5,9 +5,10 @@ const createHomePhotographerCard = (photographerData) => {
     href: `../../photographer.html?id=${photographerData.id}`,
     class: "main-link",
   });
+  linkToPersonalPage.setAttribute("aria-label", `${photographerData.name}`);
   // Ici on va créer les deux balises permettant d'afficher la photo et le nom du phtographe
   const profilPicture = createDomElement("img", {
-    alt: `Portrait de ${photographerData.name}`,
+    alt: `${photographerData.name}`,
     src: `assets/photographers/${photographerData.portrait}`,
     class: "profil-picture",
   });

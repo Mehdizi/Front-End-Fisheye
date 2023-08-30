@@ -3,21 +3,8 @@
   display: none;
 }
 
-.contact_button {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .modal {
-  z-index: 1;
+  z-index: 2;
   max-width: 670px;
   width: 70%;
   right: 0;
@@ -40,15 +27,29 @@
   width: 100%;
 }
 
+.close-modal-button {
+  border: 0px;
+  background-color: transparent;
+  height: 50px;
+}
+
 .header-contact-modal img {
   cursor: pointer;
+  margin-bottom: 75px;
 }
 
 .header-contact-modal h2 {
   font-size: 3.5rem;
   font-weight: normal;
-  text-align: center;
   margin-bottom: 20px;
+}
+
+.personal-info {
+  width: 100%;
+}
+
+.personal-message {
+  width: 100%;
 }
 
 #contactForm {
@@ -96,8 +97,8 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  max-width: 670px;
-  width: 70%;
+  width: 670px;
+  height: 350px;
   left: auto;
   position: fixed;
   background-color: #db8876;
@@ -113,6 +114,24 @@
   top: 5%;
 }
 
+@media screen and (max-width: 1048px) {
+  .success-page {
+    width: 500px;
+    height: 300px;
+  }
+  .success-page h2 {
+    font-size: 2rem;
+  }
+  .close-success-page {
+    width: 30px;
+    height: 30px;
+  }
+  .error-message {
+    font-size: 0.875rem;
+    margin-top: 3px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header-contact-modal h2 {
     font-size: 1.25rem;
@@ -126,5 +145,23 @@
   .close-modal-message {
     width: 20px;
     height: 20px;
+  }
+  .success-page {
+    width: 250px;
+    height: 150px;
+  }
+  .success-page h2 {
+    font-size: 1.25rem;
+  }
+  .close-success-page {
+    width: 20px;
+    height: 20px;
+  }
+  .formData textarea {
+    height: 4rem;
+  }
+  .error-message {
+    font-size: 0.6125rem;
+    margin-top: 0px;
   }
 }

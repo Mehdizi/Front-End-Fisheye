@@ -120,4 +120,9 @@
     text-align: center;
     font-size: 0.6875rem;
   }
+  .contact_button {
+    font-size: 1rem;
+    width: 85px;
+    height: 40px;
+  }
 }

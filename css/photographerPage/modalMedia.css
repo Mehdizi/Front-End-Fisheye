@@ -35,6 +35,19 @@
   object-fit: contain;
 }
 
+.cross-modal-button {
+  border: 0px;
+  opacity: 0.5;
+  border-radius: 50%;
+  position: absolute;
+  height: 42px;
+  width: 42px;
+  top: 2%;
+  right: 2%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
 .close-media {
   background-color: #901c1c;
   opacity: 0.5;
@@ -52,12 +65,13 @@
   transition: 0.3s ease;
 }
 
-.arrow-left,
-.arrow-right {
-  z-index: 3;
-  position: absolute;
+.left-arrow,
+.right-arrow {
+  background-color: transparent;
   height: 50px;
   width: 50px;
+  z-index: 3;
+  position: inherit;
   border: 10px solid #901c1c;
   border-bottom: none;
   border-right: none;
@@ -67,31 +81,31 @@
   top: 50%;
 }
 
-.arrow-left {
+.left-arrow {
   left: 2%;
   transform: rotate(315deg);
 }
 
-.arrow-right {
+.right-arrow {
   transform: rotate(135deg);
   right: 2%;
 }
 
-.arrow-left:hover {
+.left-arrow:hover {
   transform: scale(1.1) rotate(315deg);
   opacity: 1;
   transition: all 0.3s ease;
 }
 
-.arrow-right:hover {
+.right-arrow:hover {
   transform: scale(1.1) rotate(135deg);
   opacity: 1;
   transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 1048px) {
-  .arrow-left,
-  .arrow-right {
+  .right-arrow,
+  .right-arrow {
     z-index: 0;
     position: absolute;
     height: 25px;
@@ -113,8 +127,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  .arrow-left,
-  .arrow-right {
+  .right-arrow,
+  .right-arrow {
     position: absolute;
     height: 20px;
     width: 20px;

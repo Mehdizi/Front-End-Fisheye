@@ -1,12 +1,16 @@
 #contact_modal {
   position: relative;
   display: none;
+  height: 80vh;
 }
 
 .modal {
   z-index: 2;
   max-width: 670px;
   width: 70%;
+  max-height: 850px;
+  height: 85vh;
+  overflow: scroll;
   right: 0;
   left: 0;
   top: 5%;
@@ -31,10 +35,13 @@
   border: 0px;
   background-color: transparent;
   height: 50px;
+  width: 50px;
 }
 
 .header-contact-modal img {
   cursor: pointer;
+  height: 100%;
+  width: 100%;
   margin-bottom: 75px;
 }
 
@@ -108,7 +115,20 @@
   font-size: 3rem;
 }
 
+.close-success-page-button {
+  cursor: pointer;
+  width: 43px;
+  height: 43px;
+  border: 0px;
+  background-color: transparent;
+  position: absolute;
+  right: 2%;
+  top: 5%;
+}
+
 .close-success-page {
+  width: 100%;
+  height: 100%;
   position: absolute;
   right: 2%;
   top: 5%;
@@ -133,6 +153,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .modal {
+    max-height: 550px;
+  }
   .header-contact-modal h2 {
     font-size: 1.25rem;
   }
@@ -142,9 +165,9 @@
   .formData_input {
     font-size: 0.75rem;
   }
-  .close-modal-message {
-    width: 20px;
-    height: 20px;
+  .close-modal-button {
+    width: 30px;
+    height: 30px;
   }
   .success-page {
     width: 250px;

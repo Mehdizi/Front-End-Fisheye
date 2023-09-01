@@ -13,21 +13,46 @@ const modalMessageBtn = document.querySelector(".contact_button");
 const closeModalMessageBtn = document.querySelector(".close-modal-button");
 const formular = document.querySelector("#contactForm");
 const successPage = document.querySelector(".success-page");
-const closeModalSuccessBtn = document.querySelector(".close-success-page");
+const closeModalSuccessBtn = document.querySelector(
+  ".close-success-page-button"
+);
 // DOM element to hidden for accessibility
 header = document.querySelector(".header");
+photographerPersonalCard = document.querySelector(
+  ".photographer-personal-card"
+);
 likeCounter = document.querySelector(".like-counter");
+filterMedia = document.querySelector(".filterMedias");
+mediasFeed = document.querySelector(".medias-feed");
+
+const ariaHiddenTrueAfterOpenModalMessage = () => {
+  header.setAttribute("aria-hidden", "true");
+  photographerPersonalCard.setAttribute("aria-hidden", "true");
+  likeCounter.setAttribute("aria-hidden", "true");
+  filterMedia.setAttribute("aria-hidden", "true");
+  mediasFeed.setAttribute("aria-hidden", "true");
+};
+
+const ariaHiddenFalseAfterOpenModalMessage = () => {
+  header.setAttribute("aria-hidden", "false");
+  photographerPersonalCard.setAttribute("aria-hidden", "false");
+  likeCounter.setAttribute("aria-hidden", "false");
+  filterMedia.setAttribute("aria-hidden", "false");
+  mediasFeed.setAttribute("aria-hidden", "false");
+};
 
 // Function to open and close the modal
 
 modalMessageBtn.addEventListener("click", openModalMessage);
 function openModalMessage() {
   modal.style.display = "flex";
+  ariaHiddenTrueAfterOpenModalMessage();
 }
 
 closeModalMessageBtn.addEventListener("click", closeModalMessage);
 function closeModalMessage() {
   modal.style.display = "none";
+  ariaHiddenFalseAfterOpenModalMessage();
 }
 
 closeModalSuccessBtn.addEventListener("click", closeSuccessPage);
@@ -126,6 +151,10 @@ sendBtn.addEventListener("click", (e) => {
     emailValidation &&
     messageValidation
   ) {
+    console.log("First name :", firstName.value);
+    console.log("last name :", lastName.value);
+    console.log("email :", email.value);
+    console.log("message :", message.value);
     resetData(firstName, lastName, email, message);
     formular.reset();
     modal.style.display = "none";

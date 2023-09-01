@@ -65,16 +65,17 @@
             <button
               type="button"
               name="close contact form"
-              role="close button"
+              role="button"
+              aria-label="fermer le modal message"
               class="close-modal-button">
-              <img src="assets/icons/close.svg" />
+              <img src="assets/icons/close.svg" alt="" />
             </button>
           </div>
-          <form id="contactForm" method="get">
+          <form id="contactForm" method="get" aria-label="Contactez-moi">
             <div
               class="personal-info"
               role="group"
-              aria-labelledby="Personal informations">
+              aria-labelledby="firstName lastName email">
               <div class="formData">
                 <label for="firstName">Prénom</label>
                 <input
@@ -159,7 +160,11 @@
       </div>
 
       <div class="success-page">
-        <img class="close-success-page" src="assets/icons/close.svg" />
+        <button
+          class="close-success-page-button"
+          aria-label="close success message button">
+          <img class="close-success-page" src="assets/icons/close.svg" />
+        </button>
         <h2>Message envoyé !</h2>
       </div>
 

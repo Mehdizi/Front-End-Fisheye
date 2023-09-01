@@ -19,7 +19,6 @@ const addFilter = (medias) => {
 const applyFilter = (medias) => {
   const filter = document.querySelector("#filter");
   sortFilter(medias, filter.value);
-  console.log("filter value :", filter.value);
 };
 
 const sortFilter = (medias, filterValue) => {

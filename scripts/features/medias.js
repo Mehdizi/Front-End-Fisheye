@@ -60,14 +60,17 @@ const displayPhotographerPersonalCard = async () => {
 // Part for the creation of the personal name on the modal message
 
 const createTitleModalMessage = (photographerInfos) => {
+  // Recuperation of the photographer's name for the personalisation of the ContactForm
   const title = createDomElement("h2");
   title.innerHTML = `Contactez moi <br> ${photographerInfos.name}`;
   const headerContactModal = document.querySelector(".header-contact-modal");
   headerContactModal.prepend(title);
-  // const modalMessage = document.querySelector("#contact_modal");
-  // if (modalMessage.style.display === "flex") {
-
-  // }
+  // Recuperation of the ContactForm DOM for the personalisation of the aria-label
+  const contactForm = document.querySelector("#contactForm");
+  contactForm.setAttribute(
+    "aria-label",
+    `Contactez-moi ${photographerInfos.name}`
+  );
 };
 
 // Part of the medias feed (create and display)
@@ -86,6 +89,7 @@ const createMediasFeed = (media, index) => {
         alt: `${media.title}`,
         src: `assets/medias/lowQuality/${media.image}`,
         onclick: `displayModalMedia(${index})`,
+        role: "dialog",
       });
     } else {
       return createDomElement("video", {
@@ -96,6 +100,7 @@ const createMediasFeed = (media, index) => {
         src: `assets/medias/highQuality/${media.video}`,
         onclick: `displayModalMedia(${index})`,
         type: "video/mp4",
+        role: "dialog",
       });
     }
   };
@@ -120,6 +125,7 @@ const createMediasFeed = (media, index) => {
       },
     },
   });
+  mediaLikeButton.setAttribute("aria-label", "like button");
   const mediaLike = createDomElement("p", { class: "media-like" });
   mediaLike.innerText = counter;
   const mediaLikeIcone = createDomElement("i", {
@@ -145,15 +151,6 @@ const displayPhotographerMediasFeed = async () => {
     createMediasFeed(media, index);
   });
 };
-
-// const IncrementLike = (media) => {
-//   const likeButton = document.querySelector(".media-like-button");
-//   let counter = media.likes;
-//   likeButton.addEventListener("click", () => {
-//     counter = +counter;
-//     counter.innerHTML = counter;
-//   });
-// };
 
 // Part of the modal media (create, display)
 
@@ -200,21 +197,28 @@ const createCarousel = (medias, index) => {
     class: "full-screen-media",
     role: "dialog",
   });
+  modal.setAttribute("aria-label", "image closeup view");
+  const crossButton = createDomElement("button", {
+    type: "button",
+    class: "cross-modal-button",
+    tabindex: "1",
+  });
+  crossButton.setAttribute("aria-labellebdy", "cross-button-modal");
+
   const cross = createDomElement("img", {
+    id: "cross-button-media",
     class: "close-media",
     src: "assets/icons/close.svg",
-    alt: "bouton de fermeture du media",
+    alt: "close dialog",
     onclick: "closeModalMedia()",
   });
+  crossButton.append(cross);
   const mediaWrapper = createDomElement("div", {
     class: "modal-media-wrapper",
   });
-  const indexNum = createDomElement("span", {
-    class: "indexNum",
-    innerText: `${copyIndex + 1}/${medias.length}`,
-  });
-  const leftArrow = createDomElement("div", {
-    class: "arrow-left",
+  const leftArrow = createDomElement("button", {
+    type: "button",
+    class: "left-arrow",
     events: {
       click: () => {
         if (copyIndex === 0) {
@@ -228,8 +232,10 @@ const createCarousel = (medias, index) => {
       },
     },
   });
-  const rightArrow = createDomElement("div", {
-    class: "arrow-right",
+  leftArrow.setAttribute("aria-label", "Previous media");
+  const rightArrow = createDomElement("button", {
+    type: "button",
+    class: "right-arrow",
     events: {
       click: () => {
         if (copyIndex === medias.length - 1) {
@@ -243,9 +249,12 @@ const createCarousel = (medias, index) => {
       },
     },
   });
+  rightArrow.setAttribute("aria-label", "Next media");
+
+  // rightArrowButton.append(rightArrow);
   const title = createDomElement("h2");
   title.innerText = media.title;
-  modal.append(cross, rightArrow, leftArrow);
+  modal.append(crossButton, leftArrow, rightArrow);
   main.append(modal);
   mediaWrapper.append(modalMediaContent(media), modalMediaTitle(media));
   modal.append(mediaWrapper);

@@ -36,33 +36,23 @@
 }
 
 .cross-modal-button {
+  background-color: transparent;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #901c1c;
   border: 0px;
   opacity: 0.5;
   border-radius: 50%;
   position: absolute;
-  height: 42px;
-  width: 42px;
   top: 2%;
   right: 2%;
   cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.close-media {
-  background-color: #901c1c;
   opacity: 0.5;
-  border-radius: 50%;
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  cursor: pointer;
-  transition: 0.3s ease;
 }
 
-.close-media:hover {
+.cross-modal-button:hover,
+:focus {
   opacity: 1;
-  transform: scale(1.1);
-  transition: 0.3s ease;
 }
 
 .left-arrow,
@@ -97,6 +87,19 @@
   transition: all 0.3s ease;
 }
 
+.left-arrow:focus {
+  transform: scale(1.1) rotate(315deg);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.right-arrow:focus {
+  transform: scale(1.1) rotate(135deg);
+
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
 .right-arrow:hover {
   transform: scale(1.1) rotate(135deg);
   opacity: 1;
@@ -104,20 +107,17 @@
 }
 
 @media screen and (max-width: 1048px) {
-  .right-arrow,
+  .left-arrow,
   .right-arrow {
-    z-index: 0;
+    z-index: 2;
     position: absolute;
-    height: 25px;
-    width: 25px;
     border: 5px solid #901c1c;
     border-bottom: none;
     border-right: none;
   }
-  .close-media {
-    z-index: 0;
-    width: 20px;
-    height: 20px;
+  .cross-modal-button {
+    z-index: 2;
+    font-size: 2rem;
     top: 1%;
     right: 1%;
   }
@@ -127,7 +127,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .right-arrow,
+  .left-arrow,
   .right-arrow {
     position: absolute;
     height: 20px;
@@ -137,9 +137,12 @@
     border-right: none;
   }
   .modal-media-content {
-    z-index: 1;
+    z-index: 3;
   }
   .modal-media-title {
     font-size: 1rem;
+  }
+  .cross-modal-button {
+    font-size: 1.5rem;
   }
 }

@@ -67,7 +67,8 @@
               name="close contact form"
               role="button"
               aria-label="fermer le modal message"
-              class="close-modal-button">
+              class="close-modal-button"
+              tabindex="0">
               <img src="assets/icons/close.svg" alt="" />
             </button>
           </div>
@@ -79,6 +80,7 @@
               <div class="formData">
                 <label for="firstName">Prénom</label>
                 <input
+                  tabindex="0"
                   aria-required="true"
                   class="formData_input"
                   type="text"
@@ -97,6 +99,7 @@
               <div class="formData">
                 <label for="lastName">Nom</label>
                 <input
+                  tabindex="0"
                   aria-required="true"
                   class="formData_input"
                   type="text"
@@ -114,6 +117,7 @@
               <div class="formData">
                 <label for="email">Email</label>
                 <input
+                  tabindex="0"
                   aria-required="true"
                   class="formData_input"
                   type="email"
@@ -127,13 +131,11 @@
                 >
               </div>
             </div>
-            <div
-              class="personal-message"
-              role="group"
-              aria-labelledby="Your message">
+            <div class="personal-message" role="group">
               <div class="formData">
                 <label for="message">Message</label>
                 <textarea
+                  tabindex="0"
                   aria-required="true"
                   class="formData_input"
                   type="text"
@@ -149,6 +151,7 @@
             </div>
 
             <button
+              tabindex="0"
               id="send-btn"
               class="contact_button"
               type="submit"
@@ -163,7 +166,7 @@
         <button
           class="close-success-page-button"
           aria-label="close success message button">
-          <img class="close-success-page" src="assets/icons/close.svg" />
+          <img class="close-success-page" src="assets/icons/close.svg" alt="" />
         </button>
         <h2>Message envoyé !</h2>
       </div>
@@ -184,8 +187,6 @@
 
     <div class="medias-feed"></div>
 
-    <!-- <div id="full-screen-media" class="full-screen-media"></div> -->
-
     <script src="scripts/utils/createElement.js"></script>
     <script src="scripts/functions/getMedias.js"></script>
     <script src="scripts/functions/getPhotographers.js"></script>
@@ -193,7 +194,7 @@
     <script src="scripts/functions/getPhotographerPersonalInformations.js"></script>
     <script src="scripts/functions/getPhotographerMedias.js"></script>
     <script src="scripts/functions/getTotalLikes.js"></script>
-    <script src="/scripts/features/medias.js"></script>
+    <script src="/scripts/features/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/utils/filteredMedias.js"></script>
     <script src="/scripts/utils/FullScreenMedia.js"></script>

@@ -1,3 +1,4 @@
+// Configuration of the createDomElement function to simplify the creation of tag in other files
 const createDomElement = (tag, attributes = {}) => {
   const element = document.createElement(tag);
   for (const [attribute, value] of Object.entries(attributes)) {

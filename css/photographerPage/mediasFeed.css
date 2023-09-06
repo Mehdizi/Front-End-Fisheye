@@ -3,8 +3,8 @@
   max-width: 1240px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 90px;
   margin: 0 auto;
   margin-bottom: 50px;
 }
@@ -51,7 +51,6 @@
 
 @media screen and (max-width: 1200px) {
   .medias-feed {
-    justify-content: center;
     gap: 50px;
   }
 }

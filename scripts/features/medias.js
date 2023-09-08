@@ -93,7 +93,7 @@ const createMediasFeed = (media, index) => {
         tabindex: "0",
         events: {
           keydown: (e) => {
-            if (e.key === "Enter") displayModalMedia(`${index}`);
+            if (e.key === "Enter") displayModalMedia(index);
           },
         },
       });
@@ -110,7 +110,7 @@ const createMediasFeed = (media, index) => {
         tabindex: "0",
         events: {
           keydown: (e) => {
-            if (e.key === "Enter") displayModalMedia(`${index}`);
+            if (e.key === "Enter") displayModalMedia(index);
           },
         },
       });
@@ -311,9 +311,9 @@ const createCarousel = (medias, index) => {
     if (copyIndex === medias.length - 1) {
       copyIndex = 0;
     } else {
-      copyIndex += 1;
+      copyIndex = copyIndex + 1;
     }
-    changeMedia();
+    changeMedia(copyIndex);
   };
 
   const goToPreviousMedia = () => {
@@ -322,10 +322,11 @@ const createCarousel = (medias, index) => {
     } else {
       copyIndex -= 1;
     }
-    changeMedia();
+
+    changeMedia(copyIndex);
   };
 
-  const changeMedia = () => {
+  const changeMedia = (copyIndex) => {
     media = medias[copyIndex];
     mediaWrapper.innerHTML = "";
     mediaWrapper.append(modalMediaContent(media), modalMediaTitle(media));

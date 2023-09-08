@@ -250,17 +250,16 @@ const createCarousel = (medias, index) => {
   let media = medias[index];
   let copyIndex = index;
   const main = document.querySelector("main");
-  const modal = createDomElement("div", {
+  const modalFullScreen = createDomElement("div", {
     id: "full-screen-media",
     class: "full-screen-media",
     role: "dialog",
     tabindex: "0",
   });
-  modal.setAttribute("aria-label", "image closeup view");
+  modalFullScreen.setAttribute("aria-label", "image closeup view");
   const crossButton = createDomElement("button", {
     type: "button",
     class: "cross-modal-button",
-    tabindex: "0",
     id: "cross-button-media",
     onclick: "closeModalMedia()",
   });
@@ -280,7 +279,7 @@ const createCarousel = (medias, index) => {
     },
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") {
+    if (e.key === "ArrowLeft" && modal) {
       goToPreviousMedia();
     }
   });
@@ -297,14 +296,16 @@ const createCarousel = (medias, index) => {
   });
   rightArrow.setAttribute("aria-label", "Next media");
   document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") goToNextMedia();
+    if (e.key === "ArrowRight" && modal) {
+      goToNextMedia();
+    }
   });
   const title = createDomElement("h2");
   title.innerText = media.title;
-  modal.append(crossButton, leftArrow, rightArrow);
-  main.append(modal);
+  modalFullScreen.append(crossButton, leftArrow, rightArrow);
+  main.append(modalFullScreen);
   mediaWrapper.append(modalMediaContent(media), modalMediaTitle(media));
-  modal.append(mediaWrapper);
+  modalFullScreen.append(mediaWrapper);
 
   const goToNextMedia = () => {
     if (copyIndex === medias.length - 1) {

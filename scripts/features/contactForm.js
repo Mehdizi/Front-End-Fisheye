@@ -22,15 +22,20 @@ const closeModalSuccessBtn = document.querySelector(
 modalMessageBtn.addEventListener("click", openModalMessage);
 function openModalMessage() {
   modal.style.display = "flex";
+  unselectionableDomElements();
 }
 
 closeModalMessageBtn.addEventListener("click", closeModalMessage);
 function closeModalMessage() {
   modal.style.display = "none";
+  selectionableDomElements();
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModalMessage();
+  if (e.key === "Escape") {
+    closeModalMessage();
+    if (successPage.style.display === "flex") closeSuccessPage();
+  }
 });
 
 closeModalSuccessBtn.addEventListener("click", closeSuccessPage);
@@ -40,6 +45,7 @@ function closeSuccessPage() {
   lastNameValidation = false;
   emailValidation = false;
   messageValidation = false;
+  selectionableDomElements();
 }
 
 // Creation of validation const
@@ -131,10 +137,16 @@ sendBtn.addEventListener("click", (e) => {
     messageValidation
   ) {
     // Push the information of the input in the consol
-    console.log("First name :", firstName.value);
-    console.log("last name :", lastName.value);
-    console.log("email :", email.value);
-    console.log("message :", message.value);
+    console.log(
+      "First name :",
+      firstName.value,
+      " - last name :",
+      lastName.value,
+      " - email :",
+      email.value,
+      " - message :",
+      message.value
+    );
     // Reset the data css and input
     resetData(firstName, lastName, email, message);
     formular.reset();

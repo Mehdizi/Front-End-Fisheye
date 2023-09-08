@@ -1,9 +1,9 @@
-// DOM element for attribut tabindex
+// DOM element to change value of tabindex (-1 => unselectionnable, 0 => selectionnable)
 const header = document.querySelector("header a");
 const contactButton = document.querySelector(".contact_button");
 const filter = document.querySelector("#filter");
 
-function displayModalMedia(index) {
+const unselectionableDomElements = () => {
   header.setAttribute("tabindex", "-1");
   contactButton.setAttribute("tabindex", "-1");
   filter.setAttribute("tabindex", "-1");
@@ -17,10 +17,9 @@ function displayModalMedia(index) {
   photographerLike.forEach((media) => {
     media.setAttribute("tabindex", "-1");
   });
-  displayCarousel(index);
-}
+};
 
-function closeModalMedia() {
+const selectionableDomElements = () => {
   header.setAttribute("tabindex", "0");
   contactButton.setAttribute("tabindex", "0");
   filter.setAttribute("tabindex", "0");
@@ -34,10 +33,4 @@ function closeModalMedia() {
   photographerLike.forEach((media) => {
     media.setAttribute("tabindex", "0");
   });
-  const modalMedia = document.querySelector("#full-screen-media");
-  modalMedia.remove();
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModalMedia();
-});
+};

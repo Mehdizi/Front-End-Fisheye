@@ -1,10 +1,14 @@
 #contact_modal {
-  position: relative;
+  position: fixed;
+  z-index: 2;
   display: none;
-  height: 80vh;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 100vw;
+  height: 200vh;
 }
 
 .modal {
+  opacity: 100%;
   z-index: 2;
   max-width: 670px;
   width: 70%;

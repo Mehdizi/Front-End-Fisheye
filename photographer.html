@@ -1,37 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="css/global.css" type="text/css" />
+    <link
+      href="css/photographerPage/filter.css"
+      rel="stylesheet"
+      type="text/css" />
+    <link
+      href="css/photographerPage/likeCounter.css"
+      rel="stylesheet"
+      type="text/css" />
+    <link
+      href="css/photographerPage/mediasFeed.css"
+      rel="stylesheet"
+      type="text/css" />
+    <link
+      href="css/photographerPage/modalMedia.css"
+      rel="stylesheet"
+      type="text/css" />
+    <link
+      href="css/photographerPage/photographerCard.css"
+      rel="stylesheet"
+      type="text/css" />
+    <link
+      href="css/photographerPage/contactForm.css"
+      rel="stylesheet"
+      type="text/css" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header class="header">
+      <a href="index.html"
+        ><img alt="Fisheye Home page" src="assets/images/logo.png"
+      /></a>
     </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+
+    <main id="main" class="main">
+      <div class="photographer-personal-card">
+        <div class="photographer-button">
+          <button type="button" class="contact_button" aria-label="Contact Me">
+            Contactez-moi
+          </button>
+        </div>
       </div>
+
+      <div id="contact_modal" class=".contact_modal" role="dialog">
+        <div class="modal">
+          <div class="header-contact-modal">
+            <button
+              type="button"
+              name="close contact form"
+              role="button"
+              aria-label="fermer le modal message"
+              class="close-modal-button"
+              tabindex="0">
+              <img src="assets/icons/close.svg" alt="" />
+            </button>
+          </div>
+          <form id="contactForm" method="get" aria-label="Contactez-moi">
+            <div
+              class="personal-info"
+              role="group"
+              aria-labelledby="firstName lastName email">
+              <div class="formData">
+                <label for="firstName">Prénom</label>
+                <input
+                  tabindex="0"
+                  aria-required="true"
+                  class="formData_input"
+                  type="text"
+                  id="firstName"
+                  name="first name"
+                  minlength="2"
+                  maxlength="25"
+                  role="text" />
+                <span
+                  class="error-message firstName-error"
+                  role="alert"
+                  id="firstname-error"
+                  >Veuillez choisir un prénom valide.</span
+                >
+              </div>
+              <div class="formData">
+                <label for="lastName">Nom</label>
+                <input
+                  tabindex="0"
+                  aria-required="true"
+                  class="formData_input"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  minlength="2"
+                  maxlength="25" />
+                <span
+                  class="error-message lastName-error"
+                  role="alert"
+                  id="lastname-error"
+                  >Veuillez saisir un nom valide.</span
+                >
+              </div>
+              <div class="formData">
+                <label for="email">Email</label>
+                <input
+                  tabindex="0"
+                  aria-required="true"
+                  class="formData_input"
+                  type="email"
+                  id="email"
+                  name="email" />
+                <span
+                  class="error-message email-error"
+                  role="alert"
+                  id="email-error"
+                  >Veuillez saisir un email valide.</span
+                >
+              </div>
+            </div>
+            <div class="personal-message" role="group">
+              <div class="formData">
+                <label for="message">Message</label>
+                <textarea
+                  tabindex="0"
+                  aria-required="true"
+                  class="formData_input"
+                  type="text"
+                  id="message"
+                  name="message"></textarea>
+                <span
+                  class="error-message message-error"
+                  role="alert"
+                  id="message-error"
+                  >Veuillez saisir un message entre 10 et 250 caractères.</span
+                >
+              </div>
+            </div>
+
+            <button
+              tabindex="0"
+              id="send-btn"
+              class="contact_button"
+              type="submit"
+              role="submit formular">
+              Envoyer
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="success-page">
+        <button
+          class="close-success-page-button"
+          aria-label="close success message button">
+          <img class="close-success-page" src="assets/icons/close.svg" alt="" />
+        </button>
+        <h2>Message envoyé !</h2>
+      </div>
+
+      <div class="like-counter"></div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+
+    <div class="filterMedias">
+      <p>Trier par</p>
+      <form action="get">
+        <select name="filter" id="filter">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+      </form>
+    </div>
+
+    <div class="medias-feed"></div>
+
+    <script src="scripts/utils/createElement.js"></script>
+    <script src="/scripts/utils/modalManager.js"></script>
+    <script src="/scripts/utils/filteredMedias.js"></script>
+    <script src="scripts/functions/getMedias.js"></script>
+    <script src="scripts/functions/getPhotographers.js"></script>
+    <script src="scripts/functions/getPhotographerId.js"></script>
+    <script src="scripts/functions/getPhotographerPersonalInformations.js"></script>
+    <script src="scripts/functions/getPhotographerMedias.js"></script>
+    <script src="/scripts/features/medias.js"></script>
+    <script src="/scripts/features/contactForm.js"></script>
+    <script src="/scripts/features/FullScreenMedia.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

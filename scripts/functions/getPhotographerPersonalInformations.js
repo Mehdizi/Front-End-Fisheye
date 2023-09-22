@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const getPhotographerPersonalInformations = async () => {
   const photographers = await getPhotographers();
   const id = getPhotographerId();

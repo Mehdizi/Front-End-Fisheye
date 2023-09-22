@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 // add listener to action on change filter
 
 const addFilter = (medias) => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // DOM element to change value of tabindex (-1 => unselectionnable, 0 => selectionnable)
 const header = document.querySelector("header a");
 const contactButton = document.querySelector(".contact_button");

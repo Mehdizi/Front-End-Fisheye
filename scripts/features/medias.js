@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 // Part of the photographer's card (create and display)
 
 const createPhotographerPersonalCard = (photographerInfos) => {

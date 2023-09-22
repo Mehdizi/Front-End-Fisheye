@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Recuperation of DOM element
 const firstNameError = document.querySelector(".firstName-error");
 const lastNameError = document.querySelector(".lastName-error");

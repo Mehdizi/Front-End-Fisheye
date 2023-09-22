@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 async function getPhotographers() {
   const response = await fetch("data/photographers.json");
   if (response.ok === true) {

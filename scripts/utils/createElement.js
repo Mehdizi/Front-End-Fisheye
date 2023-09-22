@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Configuration of the createDomElement function to simplify the creation of tag in other files
 
 // This function take 2 arguments, one tag (the tag that will be created) and one or multiple attributes in accolade

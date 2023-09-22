@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 function displayModalMedia(index) {
   unselectionableDomElements();
   displayCarousel(index);

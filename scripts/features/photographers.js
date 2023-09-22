@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const createHomePhotographerCard = (photographerData) => {
   const card = createDomElement("article", { class: "main-article" });
   // Creation of the <a> tag to redirect to the personal page

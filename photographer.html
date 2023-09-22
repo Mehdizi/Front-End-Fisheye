@@ -174,17 +174,18 @@
     </main>
 
     <div class="filterMedias">
-      <p>Trier par</p>
       <form action="get">
-        <select name="filter" id="filter">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
+        <label for="filter"
+          >Trier par
+          <select name="filter" id="filter">
+            <option for="filter" value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select></label
+        >
       </form>
     </div>
-
-    <div class="medias-feed"></div>
+    <section class="medias-feed"></section>
 
     <script src="scripts/utils/createElement.js"></script>
     <script src="/scripts/utils/modalManager.js"></script>

@@ -1,8 +1,5 @@
 /* CSS of the filter */
 .filterMedias {
-  gap: 15px;
-  display: flex;
-  align-items: center;
   margin: 0 auto;
   max-width: 1240px;
   width: 95%;
@@ -10,9 +7,12 @@
   padding-bottom: 50px;
 }
 
-.filterMedias p {
+.filterMedias label {
   font-size: 1.125rem;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .filterMedias select {

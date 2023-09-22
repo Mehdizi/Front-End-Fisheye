@@ -78,15 +78,15 @@ const createTitleModalMessage = (photographerInfos) => {
 const createMediasFeed = (media, index) => {
   // Recuperation of DOM element to insert the created HTML
   const feed = document.querySelector(".medias-feed");
-  const mediaCard = createDomElement("div", {
+  const mediaCard = createDomElement("article", {
     class: "photographer-media-card",
     id: "photographer-media-card",
   });
   const mediaContent = () => {
     if (media.image) {
-      return createDomElement("img", {
+      const image = createDomElement("img", {
         class: "photographer-content",
-        alt: `${media.title}`,
+        alt: media.title,
         src: `assets/medias/lowQuality/${media.image}`,
         onclick: `displayModalMedia(${index})`,
         role: "dialog",
@@ -97,10 +97,12 @@ const createMediasFeed = (media, index) => {
           },
         },
       });
+      image.setAttribute("aria-label", `${media.title}`);
+      return image;
     } else {
-      return createDomElement("video", {
+      const video = createDomElement("video", {
         class: "photographer-content",
-        alt: `${media.title}`,
+        alt: media.title,
         controls: "true",
         width: "400",
         src: `assets/medias/highQuality/${media.video}`,
@@ -114,8 +116,11 @@ const createMediasFeed = (media, index) => {
           },
         },
       });
+      video.setAttribute("aria-label", `${media.title}`);
+      return video;
     }
   };
+
   const mediaTitle = createDomElement("h2", { class: "media-title" });
   mediaTitle.innerText = media.title;
 
@@ -137,7 +142,7 @@ const createMediasFeed = (media, index) => {
       },
     },
   });
-  mediaLikeButton.setAttribute("aria-label", "like button");
+  mediaLikeButton.setAttribute("aria-label", "likes");
   const mediaLike = createDomElement("p", { class: "media-like" });
   mediaLike.innerText = counter;
   const mediaLikeIcone = createDomElement("i", {
@@ -263,7 +268,7 @@ const createCarousel = (medias, index) => {
     id: "cross-button-media",
     onclick: "closeModalMedia()",
   });
-  crossButton.setAttribute("aria-labellebdy", "cross-button-modal");
+  crossButton.setAttribute("aria-labellebdy", "close-dialog");
   crossButton.innerText = "X";
   const mediaWrapper = createDomElement("div", {
     class: "modal-media-wrapper",
